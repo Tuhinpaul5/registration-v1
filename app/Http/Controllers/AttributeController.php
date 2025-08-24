@@ -18,9 +18,9 @@ class AttributeController extends Controller
         $attribute = $this->repo->getAttribute($id);
 
         if (!$attribute) {
-            return response_handler(false, 'Attribute not found', 404);
+            return response_handler('Attribute not found', false, 404);
         }
 
-        return response_handler(true, 'Attribute retrieved', 200, $attribute->toArray());
+        return response_handler('Attribute retrieved', true, 200, $attribute->toArray());
     }
 }

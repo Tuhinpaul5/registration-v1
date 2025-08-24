@@ -11,13 +11,13 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
+    ->withMiddleware(callback: function (Middleware $middleware): void {
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (\Illuminate\Database\Eloquent\ModelNotFoundException $e, \Illuminate\Http\Request $request) {
             if ($request->is('api/*')) {
-                return response_handler(false, 'The requested resource was not found.', 404);
+                return response_handler('The requested resource was not found.', false, 404);
             }
         });
     })->create();
